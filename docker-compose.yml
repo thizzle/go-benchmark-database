@@ -1,0 +1,14 @@
+app:
+  build: .
+  environment:
+    - DATABASE_URL=postgres://benchmarks:thizzle@pgm/benchmarks?sslmode=disable
+  volumes:
+    - .:/go/src/github.com/thizzle/go-benchmark-database
+  links:
+    - pgm
+
+pgm:
+  image: postgres:9.4
+  environment:
+    - POSTGRES_USER=benchmarks
+    - POSTGRES_PASSWORD=thizzle
